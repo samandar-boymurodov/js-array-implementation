@@ -123,6 +123,15 @@ export class MyArray {
   }
 
   reduce(cb, initialValue) {
-    let acc = initialValue || this[0];
+    const isInitProvided = initialValue !== undefined;
+
+    let prev = isInitProvided ? initialValue : this[0];
+    let i = isInitProvided ? 0 : 1;
+
+    for (i; i < this.length; i++) {
+      prev = cb(prev, this[i], i);
+    }
+
+    return prev;
   }
 }
