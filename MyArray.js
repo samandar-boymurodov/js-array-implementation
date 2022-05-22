@@ -134,4 +134,22 @@ export class MyArray {
 
     return prev;
   }
+
+  forEach(cb) {
+    for (let i = 0; i < this.length; i++) {
+      cb(this[i], i);
+    }
+  }
+
+  join(separator) {
+    separator = separator === undefined ? "," : separator;
+    let res = "";
+
+    for (let i = 0; i < this.length - 1; i++) {
+      res = res + this[i] + separator;
+    }
+
+    res = res + this[this.length - 1];
+    return res;
+  }
 }
