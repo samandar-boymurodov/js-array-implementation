@@ -123,13 +123,18 @@ export class MyArray {
   }
 
   reduce(cb, initialValue) {
-    const isInitProvided = initialValue !== undefined;
+    // arr.reduce((prev, cur) => { prev + cur }, 0)
+    let prev = initialValue;
+    let startIndex = 0;
 
-    let prev = isInitProvided ? initialValue : this[0];
-    let i = isInitProvided ? 0 : 1;
+    // arr.reduce((prev, cur) => { prev + cur })
+    if (initialValue === undefined) {
+      prev = this[0];
+      startIndex = 1;
+    }
 
-    for (i; i < this.length; i++) {
-      prev = cb(prev, this[i], i);
+    for (startIndex; startIndex < this.length; startIndex++) {
+      prev = cb(prev, this[startIndex], startIndex);
     }
 
     return prev;
