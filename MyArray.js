@@ -25,19 +25,18 @@ export class MyArray {
     // this[2] = this[3]
     // this[3] = this[4]
 
-    delete this[this.length - 1];
-    this.length--;
+    // delete this[this.length - 1];
+    // this.length--;
 
-    return removed;
+    return this;
   }
 
   unshift(...args) {
-    //["wolf", "fish"]
-    let i = this.length - 1;
-    while (i >= 0) {
-      this[args.length + i] = this[i];
+    //args: ["wolf", "fish"]
 
-      i--;
+    // Shift the indexes of existing elements => arr[0] will be arr[2]; 2 is the length of "args"
+    for (let i = this.length - 1; i >= 0; i--) {
+      this[args.length + i] = this[i];
     }
     // let's say:
     // current array: ["rabbit", "dog", "cow"]
@@ -48,8 +47,7 @@ export class MyArray {
     // this[2 + 0] = this[0]
     // Final array: [..., ..., "rabbit", "dog", "cow"]
 
-    i = 0;
-    for (i; i < args.length; i++) {
+    for (let i = 0; i < args.length; i++) {
       this[i] = args[i];
     }
     // this[0] = "wolf"
