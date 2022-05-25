@@ -1,6 +1,18 @@
 export class MyArray {
-  constructor() {
-    this.length = 0;
+  constructor(...args) {
+    if (args.length === 1 && typeof args[0] === "number") {
+      for (let i = 0; i < args[0]; i++) {
+        this[i] = undefined;
+      }
+
+      this.length = args[0];
+      return;
+    }
+
+    for (let i = 0; i < args.length; i++) {
+      this[i] = args[i];
+    }
+    this.length = args.length;
   }
 
   push(...args) {
@@ -156,3 +168,9 @@ export class MyArray {
     return res;
   }
 }
+
+var _old = MyArray;
+
+MyArray = function (...args) {
+  return new _old(...args);
+};
