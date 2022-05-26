@@ -1,4 +1,4 @@
-export class MyArray {
+class MyArray {
   constructor(...args) {
     if (args.length === 1 && typeof args[0] === "number") {
       for (let i = 0; i < args[0]; i++) {
@@ -37,10 +37,10 @@ export class MyArray {
     // this[2] = this[3]
     // this[3] = this[4]
 
-    // delete this[this.length - 1];
-    // this.length--;
+    delete this[this.length - 1];
+    this.length--;
 
-    return this;
+    return removed;
   }
 
   unshift(...args) {
@@ -174,3 +174,5 @@ var _old = MyArray;
 MyArray = function (...args) {
   return new _old(...args);
 };
+
+window.MyArray = MyArray;
