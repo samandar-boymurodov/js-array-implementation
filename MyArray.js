@@ -165,12 +165,33 @@ class MyArray {
     result += this[this.length - 1];
     return result;
   }
+
+  static range(...args) {
+    // args = [start, stop, step]
+    if (args.length === 0) {
+      return new MyArray();
+    }
+    const result = new MyArray();
+
+    if (args.length === 1) {
+      for (let i = 0; i < args[0]; i++) {
+        result.push(i);
+      }
+
+      return result;
+    }
+
+    let step = 1;
+    if (args[2]) {
+      step = args[2];
+    }
+
+    for (let i = args[0]; i < args[1]; i = i + step) {
+      result.push(i);
+    }
+
+    return result;
+  }
 }
-
-var _old = MyArray;
-
-MyArray = function (...args) {
-  return new _old(...args);
-};
 
 window.MyArray = MyArray;
