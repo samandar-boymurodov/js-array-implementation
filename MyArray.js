@@ -24,6 +24,16 @@ class MyArray {
     return this.length;
   }
 
+  pop() {
+    if (!this.length) return; // don't do anything when array is empty
+
+    const removed = this[this.length - 1];
+    delete this[this.length - 1];
+    this.length--;
+
+    return removed;
+  }
+
   shift() {
     if (this.length === 0) return;
 
