@@ -1,10 +1,6 @@
 class MyArray {
   constructor(...args) {
     if (args.length === 1 && typeof args[0] === "number") {
-      for (let i = 0; i < args[0]; i++) {
-        this[i] = undefined;
-      }
-
       this.length = args[0];
       return;
     }
@@ -16,11 +12,11 @@ class MyArray {
   }
 
   push(...args) {
-    for (let i = 0; i < args.length; i++) {
-      this[this.length] = args[i];
-      this.length++;
+    for (let i = this.length; i < args.length + this.length; i++) {
+      this[i] = args[i - this.length];
     }
 
+    this.length += args.length;
     return this.length;
   }
 
@@ -142,19 +138,11 @@ class MyArray {
     return this;
   }
 
-  reduce(cb, initialValue) {
-    // arr.reduce((prev, cur) => { prev + cur }, 0)
+  reduce(cb, initialValue = this[0]) {
     let prev = initialValue;
-    let startIndex = 0;
 
-    // arr.reduce((prev, cur) => { prev + cur })
-    if (initialValue === undefined) {
-      prev = this[0];
-      startIndex = 1;
-    }
-
-    for (startIndex; startIndex < this.length; startIndex++) {
-      prev = cb(prev, this[startIndex], startIndex);
+    for (let i = arguments.length === 1 ? 1 : 0; i < this.length; i++) {
+      prev = cb(prev, this[i], i);
     }
 
     return prev;
@@ -166,18 +154,16 @@ class MyArray {
     }
   }
 
-  join(separator) {
-    if (separator === undefined) {
-      separator = ","; // default separator character
-    }
-    let res = "";
+  join(sp = ",") {
+    if (!this.length) return "";
+    let result = "";
 
     for (let i = 0; i < this.length - 1; i++) {
-      res = res + this[i] + separator;
+      result += this[i] + sp;
     }
 
-    res = res + this[this.length - 1];
-    return res;
+    result += this[this.length - 1];
+    return result;
   }
 }
 
