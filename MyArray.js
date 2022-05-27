@@ -12,8 +12,8 @@ class MyArray {
   }
 
   push(...args) {
-    for (let i = this.length; i < args.length + this.length; i++) {
-      this[i] = args[i - this.length];
+    for (let i = 0; i < args.length; i++) {
+      this[this.length + i] = args[i];
     }
 
     this.length += args.length;
