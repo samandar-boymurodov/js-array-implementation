@@ -157,7 +157,9 @@ class MyArray {
   }
 
   join(separator) {
-    separator = separator === undefined ? "," : separator;
+    if (separator === undefined) {
+      separator = ","; // default separator character
+    }
     let res = "";
 
     for (let i = 0; i < this.length - 1; i++) {
