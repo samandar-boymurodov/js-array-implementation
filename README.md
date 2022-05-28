@@ -1,4 +1,3 @@
-# Arrays - ReadME
 # "MyArray" - Custom Javascript Array implementation
 
 ## Methods added
